@@ -1,0 +1,10 @@
+artifact_location: file:///E:/fortransferee/mlproject2/myproject/mlruns/0/models/m-a5f891cf86964a86ac6955f1ec1e86bb/artifacts
+creation_timestamp: 1752905970671
+experiment_id: '0'
+last_updated_timestamp: 1752905974840
+model_id: m-a5f891cf86964a86ac6955f1ec1e86bb
+model_type: null
+name: model
+source_run_id: 67a3eb22ec5d4de8bff1b0bb06baf78f
+status: 2
+status_message: null

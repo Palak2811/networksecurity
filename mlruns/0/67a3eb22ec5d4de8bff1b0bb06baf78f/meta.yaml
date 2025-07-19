@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/fortransferee/mlproject2/myproject/mlruns/0/67a3eb22ec5d4de8bff1b0bb06baf78f/artifacts
+end_time: 1752905974858
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 67a3eb22ec5d4de8bff1b0bb06baf78f
+run_name: gentle-finch-1000
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752905970619
+status: 3
+tags: []
+user_id: Palak Mathur

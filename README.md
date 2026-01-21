@@ -1,163 +1,103 @@
-### Network Security Projects For Phising Data
-using ETL(extract,transform,load) pipeline:-
-extract =extracting the data from the source(csv file,comming from apis,etc)
-transform=tranforming the dataset by doing basic preprocessing like cleaning raw data and converting into json
-load=loading the jason file to destination(mongodb,sql,etc)
+# Network Security Phishing Detection
 
+## 📖 Overview
 
-This project is a Machine Learning application for **Network Security / Phishing Detection**.  
-It uses a **FastAPI** backend, integrates with **MongoDB** for data storage, and includes a complete **ML training pipeline** (data ingestion → transformation → model training → prediction).  
+This project is a sophisticated machine learning application designed to detect phishing attempts with high accuracy. It features a complete end-to-end pipeline, from data ingestion and processing to model training and deployment. The project is built with a modern tech stack, including a FastAPI backend for the RESTful API and MLflow for robust experiment tracking.
+
+This application serves as a strong demonstration of building and deploying a production-ready machine learning system.
 
 ---
 
-## 🚀 Features
-- **Data Ingestion** from CSV or MongoDB.
-- **Data Transformation** for ML-ready formats.
-- **Model Training** using `scikit-learn`.
-- **Prediction API** using FastAPI + Uvicorn.
-- **MLflow** integration for experiment tracking.
-- **DagsHub** support for remote logging.
-- **Modular Codebase** with clear folder structure.
+## 🚀 Key Features
+
+*   **End-to-End ML Pipeline:** A fully automated pipeline that covers data ingestion, validation, transformation, model training, and evaluation.
+*   **RESTful API:** A high-performance API built with FastAPI that exposes the model's prediction capabilities.
+*   **Experiment Tracking:** Integrated with MLflow for comprehensive tracking of all training runs, including parameters, metrics, and artifacts.
+*   **Scalable Data Handling:** Utilizes MongoDB for efficient storage and retrieval of large datasets.
+*   **Modular and Maintainable Code:** The project follows a modular structure, separating concerns for easy maintenance and scalability.
 
 ---
 
-## 📂 Project Structure
-.
-├── Artifacts/ # Stores generated artifacts (data, models, logs)
-├── Network_Data/ # Raw datasets
-├── networksecurity/ # Core Python package
-│ ├── components/ # Data ingestion, transformation, validation, training
-│ ├── constants/ # Constant values (paths, configs)
-│ ├── entity/ # Entity classes for configs/artifacts
-│ ├── exception/ # Custom exceptions
-│ ├── logging/ # Logging setup
-│ ├── pipeline/ # Training & prediction pipelines
-│ └── utils/ # Utility functions
-├── notebooks/ # Jupyter notebooks for exploration
-├── prediction_output/ # Model prediction outputs
-├── templates/ # HTML templates for API frontend
-├── app.py # FastAPI app entry point
-├── main.py # Main script
-├── .env # Environment variables (MongoDB URI, secrets)
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+## 🛠️ Tech Stack
 
-yaml
-Copy
-Edit
+*   **Backend:** Python, FastAPI
+*   **Database:** MongoDB
+*   **ML Libraries:** Scikit-learn, Pandas, NumPy
+*   **MLOps:** MLflow, DagsHub
+*   **Deployment:** Uvicorn
 
 ---
 
-## 🛠 Installation
+## 📈 Architecture
 
-### 1️⃣ Clone the repository
+```mermaid
+graph TD
+    A[Data Source: CSV/MongoDB] --> B(Data Ingestion);
+    B --> C(Data Validation);
+    C --> D(Data Transformation);
+    D --> E(Model Training);
+    E --> F(Model Evaluation);
+    F --> G(Model Registry);
+    G --> H{Prediction API};
+    I[User Request] --> H;
+    H --> J[Prediction Response];
+```
+
+---
+
+## ⚙️ Installation
+
+**1. Clone the repository:**
+
 ```bash
-git clone https://github.com/your-username/network-security-ml.git
+git clone https://github.com/your-username/network-security-ml.git # Make sure to replace 'your-username'
 cd network-security-ml
-2️⃣ Create a virtual environment
-bash
-Copy
-Edit
+```
+
+**2. Create a virtual environment:**
+
+```bash
 python -m venv venv
-source venv/bin/activate   # Linux / Mac
-venv\Scripts\activate      # Windows
-3️⃣ Install dependencies
-bash
-Copy
-Edit
+source venv/bin/activate # For Linux/Mac
+venv\Scripts\activate # For Windows
+```
+
+**3. Install dependencies:**
+
+```bash
 pip install -r requirements.txt
-⚙ Environment Variables
-Create a .env file in the root directory with:
+```
 
-env
-Copy
-Edit
-mongo_db_url = "your_mongodb_connection_string"
-DATA_INGESTION_DATABASE_NAME = "your_database"
-DATA_INGESTION_COLLECTION_NAME = "your_collection"
-▶ Running the Application
-Start the FastAPI app using Uvicorn:
+**4. Set up environment variables:**
 
-bash
-Copy
-Edit
+Create a `.env` file in the root directory and add your MongoDB connection string:
+
+```
+MONGODB_URL_KEY="your_mongodb_connection_string"
+```
+
+---
+
+## ▶️ How to Run
+
+**1. Run the FastAPI application:**
+
+```bash
 uvicorn app:app --reload
-API will be available at:
-🔗 http://127.0.0.1:8000
+```
 
-📡 API Endpoints
-Method	Endpoint	Description
-GET	/	Home / Welcome Page
-POST	/predict	Predict from input data
-GET	/docs	Swagger UI for API testing
-GET	/redoc	ReDoc API documentation
+The API will be available at `http://127.0.0.1:8000`.
 
-📦 Dependencies
-css
-Copy
-Edit
-python-dotenv
-pandas
-numpy
-pymongo
-certifi
-pymongo[srv]
-scikit-learn
-mlflow
-pyaml
-dagshub
-fastapi
-uvicorn
-python-multipart
-Install them via:
+**2. Train the model:**
 
-bash
-Copy
-Edit
-pip install -r requirements.txt
- ML Pipeline
-Data Ingestion → Load from MongoDB / CSV.
+To trigger the training pipeline, you can send a `GET` request to the `/train` endpoint or access it through the API documentation.
 
-Data Transformation → Feature engineering, scaling.
+---
 
-Model Training → Train and evaluate ML models.
+## 📡 API Endpoints
 
-Model Storage → Save model artifacts for prediction.
+*   `GET /`: Redirects to the API documentation.
+*   `GET /train`: Triggers the model training pipeline.
+*   `POST /predict`: Makes a prediction on new data.
 
-Prediction API → Serve predictions via FastAPI.
-
-🖥 Example Usage
-Request:
-json
-Copy
-Edit
-POST /predict
-{
-    "feature1": 0.45,
-    "feature2": 1.23,
-    "feature3": 0.67
-}
-Response:
-json
-Copy
-Edit
-{
-    "prediction": "Safe"
-}
-📌 Notes
-Make sure MongoDB is running or your Atlas connection string is correct.
-
-MLflow will track your experiments locally or remotely.
-
-Modify constants in networksecurity/constants/training_pipeline.py as needed.
-
-🏗 Future Improvements
-Add authentication for API.
-
-Integrate with Docker for deployment.
-
-Implement CI/CD pipeline.
-
-Enhance feature engineering.
-
-
+You can access the interactive API documentation at `http://127.0.0.1:8000/docs`.
